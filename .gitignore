@@ -1,0 +1,106 @@
+# ==========================================
+# REGLAS DE SEGURIDAD CRÍTICAS Y DATOS PRIVADOS
+# ==========================================
+# Certificados de firma de aplicaciones
+*.pfx
+*.p12
+*.snk
+UTPCalendar_TemporaryKey.pfx
+*_TemporaryKey.pfx
+
+# Archivos de entorno y credenciales
+.env
+.env.*
+secrets.json
+credentials.*
+*.secret
+appsettings.Development.json
+appsettings.Local.json
+
+# Perfiles locales, datos de usuario y bases de datos
+local_profiles.json
+**/local_profiles.json
+*.sqlite
+*.sqlite3
+*.db
+*.dat
+*.lock
+**/*.ics
+autorun_log.txt
+**/autorun_log.txt
+
+# Logs
+*.log
+logs/
+
+# ==========================================
+# C# / .NET / WinUI 3
+# ==========================================
+# Carpetas de compilación
+.vs/
+/bin/
+/obj/
+/AppPackages/
+/BundleArtifacts/
+/InstallerPayload/
+StoreKey/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Salidas y publicación
+/artifacts/
+/TestResults/
+*.pubxml.user
+/Properties/PublishProfiles/*.pubxml
+/publish/
+
+# Paquetes y artefactos temporales
+*.nupkg
+*.snupkg
+*.msix
+*.msixbundle
+
+# ==========================================
+# PYTHON (Subcarpeta backend) & EMPAQUETADO
+# ==========================================
+# Entornos virtuales
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Herramientas de testing y coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.tox
+.ipynb_checkpoints
+
+# Artefactos generados del backend
+backend/UTPCalendarBackend.exe
+backend/peru_holidays_cache.json
+backend/profile_analysis.json
+
+# Compilados de PyInstaller e Inno Setup
+/build/
+/dist/
+*.spec
+/Output/
+/output/
+/public/
+
+# ==========================================
+# SISTEMA OPERATIVO
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+

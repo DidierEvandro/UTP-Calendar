@@ -1,0 +1,82 @@
+<Page
+    x:Class="UTPCalendar.View.Pages.RemindersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="24">
+        <ScrollViewer>
+            <StackPanel Spacing="24" MaxWidth="800" HorizontalAlignment="Left">
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Recordatorios" Style="{ThemeResource TitleTextBlockStyle}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Notificaciones" FontWeight="SemiBold" FontSize="16" Margin="4,0,0,4"/>
+                    <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" 
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1" CornerRadius="8" HorizontalAlignment="Stretch">
+                        <StackPanel>
+
+                            <Grid Padding="16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center" Margin="0,0,20,0">
+                                    <TextBlock Text="Activar recordatorios automáticos" FontWeight="Medium"/>
+                                    <TextBlock Text="Añade alarmas a los eventos del archivo .ics generado." 
+                                               FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                </StackPanel>
+                                <ToggleSwitch Grid.Column="1" IsOn="{x:Bind ViewModel.IsEnabled, Mode=TwoWay}" MinWidth="0" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <MenuFlyoutSeparator Margin="0"/>
+
+                            <ContentControl IsEnabled="{x:Bind ViewModel.IsEnabled, Mode=OneWay}" HorizontalContentAlignment="Stretch">
+                                <StackPanel>
+
+                                    <Grid Padding="16">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel VerticalAlignment="Center" Margin="0,0,20,0">
+                                            <TextBlock Text="Primer evento del día" FontWeight="Medium"/>
+                                            <TextBlock Text="Minutos de anticipación para tu primera clase." 
+                                                       FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                        </StackPanel>
+                                        <controls:NumberBox Grid.Column="1" Value="{x:Bind ViewModel.FirstEventMinutes, Mode=TwoWay}" 
+                                                            Minimum="0" SpinButtonPlacementMode="Inline" Width="150" VerticalAlignment="Center"/>
+                                    </Grid>
+
+                                    <MenuFlyoutSeparator Margin="0"/>
+
+                                    <Grid Padding="16">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel VerticalAlignment="Center" Margin="0,0,20,0">
+                                            <TextBlock Text="Siguientes eventos" FontWeight="Medium"/>
+                                            <TextBlock Text="Minutos de anticipación para el resto de clases del día." 
+                                                       FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                        </StackPanel>
+                                        <controls:NumberBox Grid.Column="1" Value="{x:Bind ViewModel.OtherEventsMinutes, Mode=TwoWay}" 
+                                                            Minimum="0" SpinButtonPlacementMode="Inline" Width="150" VerticalAlignment="Center"/>
+                                    </Grid>
+
+                                </StackPanel>
+                            </ContentControl>
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

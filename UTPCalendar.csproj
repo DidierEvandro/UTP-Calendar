@@ -1,0 +1,238 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PlatformTarget>x64</PlatformTarget>
+		<Platforms>x64</Platforms>
+		<WindowsPackageType>None</WindowsPackageType>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+		<SelfContained>true</SelfContained>
+		<PublishTrimmed>false</PublishTrimmed>
+		<PublishReadyToRun>false</PublishReadyToRun>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Dialogs\ConfirmationDialog.xaml" />
+		<None Remove="Dialogs\InputDialog.xaml" />
+		<None Remove="Dialogs\MessageDialog.xaml" />
+		<None Remove="Resources\Styles.xaml" />
+		<None Remove="Resources\ThemeResources.xaml" />
+		<None Remove="View\Pages\AdvancedPage.xaml" />
+		<None Remove="View\Pages\CalendarPage.xaml" />
+		<None Remove="View\Pages\LogsPage.xaml" />
+		<None Remove="View\Pages\NextcloudPage.xaml" />
+		<None Remove="View\Pages\RemindersPage.xaml" />
+		<None Remove="View\Pages\UsersPage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Manifest Include="$(ApplicationManifest)" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.2.251219" />
+		<PackageReference Include="Ical.Net" Version="5.2.2" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.0.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Resources\ThemeResources.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Resources\Styles.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Dialogs\MessageDialog.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Dialogs\InputDialog.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="Dialogs\ConfirmationDialog.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="View\Pages\LogsPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="View\Pages\AdvancedPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="View\Pages\CalendarPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="View\Pages\NextcloudPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+	<ItemGroup>
+		<Page Update="View\Pages\RemindersPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+	</ItemGroup>
+
+	<!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+	</PropertyGroup>
+
+	<!-- App Configuration -->
+	<PropertyGroup>
+		<DefaultLanguage>es-pe</DefaultLanguage>
+		<ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+		<StartupObject>UTPCalendar.Program</StartupObject>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Content Remove="Assets\LargeTile.scale-100.png" />
+	  <Content Remove="Assets\LargeTile.scale-125.png" />
+	  <Content Remove="Assets\LargeTile.scale-150.png" />
+	  <Content Remove="Assets\LargeTile.scale-200.png" />
+	  <Content Remove="Assets\LargeTile.scale-400.png" />
+	  <Content Remove="Assets\logo.altform-lightunplated_targetsize-16.png" />
+	  <Content Remove="Assets\logo.altform-lightunplated_targetsize-24.png" />
+	  <Content Remove="Assets\logo.altform-lightunplated_targetsize-256.png" />
+	  <Content Remove="Assets\logo.altform-lightunplated_targetsize-32.png" />
+	  <Content Remove="Assets\logo.altform-lightunplated_targetsize-48.png" />
+	  <Content Remove="Assets\logo.altform-unplated_targetsize-16.png" />
+	  <Content Remove="Assets\logo.altform-unplated_targetsize-24.png" />
+	  <Content Remove="Assets\logo.altform-unplated_targetsize-256.png" />
+	  <Content Remove="Assets\logo.altform-unplated_targetsize-32.png" />
+	  <Content Remove="Assets\logo.altform-unplated_targetsize-48.png" />
+	  <Content Remove="Assets\logo.scale-100.png" />
+	  <Content Remove="Assets\logo.scale-125.png" />
+	  <Content Remove="Assets\logo.scale-150.png" />
+	  <Content Remove="Assets\logo.scale-200.png" />
+	  <Content Remove="Assets\logo.scale-400.png" />
+	  <Content Remove="Assets\logo.targetsize-16.png" />
+	  <Content Remove="Assets\logo.targetsize-24.png" />
+	  <Content Remove="Assets\logo.targetsize-256.png" />
+	  <Content Remove="Assets\logo.targetsize-32.png" />
+	  <Content Remove="Assets\logo.targetsize-48.png" />
+	  <Content Remove="Assets\SmallTile.scale-100.png" />
+	  <Content Remove="Assets\SmallTile.scale-125.png" />
+	  <Content Remove="Assets\SmallTile.scale-150.png" />
+	  <Content Remove="Assets\SmallTile.scale-200.png" />
+	  <Content Remove="Assets\SmallTile.scale-400.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-100.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-125.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-150.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-200.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-400.png" />
+	  <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+	  <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+	  <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+	  <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+	  <Content Remove="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+	  <Content Remove="Assets\Square44x44Logo.scale-100.png" />
+	  <Content Remove="Assets\Square44x44Logo.scale-125.png" />
+	  <Content Remove="Assets\Square44x44Logo.scale-150.png" />
+	  <Content Remove="Assets\Square44x44Logo.scale-200.png" />
+	  <Content Remove="Assets\Square44x44Logo.scale-400.png" />
+	  <Content Remove="Assets\Square44x44Logo.targetsize-16.png" />
+	  <Content Remove="Assets\Square44x44Logo.targetsize-24.png" />
+	  <Content Remove="Assets\Square44x44Logo.targetsize-256.png" />
+	  <Content Remove="Assets\Square44x44Logo.targetsize-32.png" />
+	  <Content Remove="Assets\Square44x44Logo.targetsize-48.png" />
+	  <Content Remove="Assets\StoreLogo.scale-100.png" />
+	  <Content Remove="Assets\StoreLogo.scale-125.png" />
+	  <Content Remove="Assets\StoreLogo.scale-150.png" />
+	  <Content Remove="Assets\StoreLogo.scale-200.png" />
+	  <Content Remove="Assets\StoreLogo.scale-400.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-100.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-125.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-150.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-200.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-400.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="Assets\AppIcon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Assets\logo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="View\Pages\UsersPage.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="backend\**\*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!--
+		InstallerPayload: carpeta preparada para Inno Setup con TODO lo necesario para ejecutar la app unpackaged.
+		Este Target copia los archivos desde la carpeta de Publish (si existe) o desde el OutputPath hacia:
+		$(MSBuildProjectDirectory)\InstallerPayload\$(Configuration)\$(Platform)\
+		Incluirá exe, dlls, resources.pri, Assets, carpetas de idiomas y cualquier otro recurso publicado.
+		Propósito: facilitar la creación de un instalador (Inno Setup) sin depender de MSIX/Store.
+		NOTA: WinUI 3 / Windows App SDK no soporta PublishSingleFile ni trimming agresivo. Mantener PublishSingleFile=false y PublishTrimmed=false.
+		También es importante publicar como FileSystem (carpeta) y no como MSIX si queremos una app "unpackaged".
+	-->
+	<Target Name="CreateInstallerPayload" AfterTargets="Publish;Build">
+		<PropertyGroup>
+			<!-- Directorio destino para el instalador -->
+			<InstallerPayloadDir>$(MSBuildProjectDirectory)\InstallerPayload\$(Configuration)\$(Platform)\</InstallerPayloadDir>
+			<!-- Si PublishDir existe (estamos ejecutando Publish) usarlo; si no, usar OutputPath -->
+			<PublishSource Condition="'$(PublishDir)' != ''">$(PublishDir)</PublishSource>
+			<PublishSource Condition="'$(PublishSource)' == ''">$(OutputPath)</PublishSource>
+		</PropertyGroup>
+		<Message Importance="High" Text="Creating InstallerPayload from $(PublishSource) to $(InstallerPayloadDir)" />
+		<!-- Crear carpeta destino -->
+		<MakeDir Directories="$(InstallerPayloadDir)" Condition="!Exists('$(InstallerPayloadDir)')" />
+		<!-- Incluir todos los archivos publicados y asegurar Assets y archivos .pri (resources.pri) -->
+		<ItemGroup>
+			<_PublishFiles Include="$(PublishSource)**\*.*" />
+			<_AssetFiles Include="$(MSBuildProjectDirectory)\Assets\**\*.*" />
+			<!-- Buscar ficheros .pri generados en obj (resources.pri) por si no fueron copiados al publish -->
+			<_PriFiles Include="$(MSBuildProjectDirectory)\obj\**\*.pri" />
+		</ItemGroup>
+		<!-- Copiar archivos publicados -->
+		<Copy SourceFiles="@(_PublishFiles)" DestinationFiles="@( _PublishFiles->'$(InstallerPayloadDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition="@(_PublishFiles) != ''" />
+		<!-- Copiar Assets (por si acaso) preservando estructura -->
+		<Copy SourceFiles="@(_AssetFiles)" DestinationFiles="@( _AssetFiles->'$(InstallerPayloadDir)Assets\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition="@(_AssetFiles) != ''" />
+		<!-- Copiar archivos .pri desde obj (resources.pri) a la raiz del InstallerPayload -->
+		<Copy SourceFiles="@(_PriFiles)" DestinationFiles="@( _PriFiles->'$(InstallerPayloadDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition="@(_PriFiles) != ''" />
+		<!-- Agregar un archivo README y un marcador para el instalador -->
+		<WriteLinesToFile File="$(InstallerPayloadDir)InstallerPayloadReadme.txt" Lines="Created by MSBuild target CreateInstallerPayload. Contains files required to run the WinUI 3 app unpackaged." Overwrite="true" />
+	</Target>
+
+	<!-- Copiar .pri (resources.pri o UTPCalendar.pri) desde bin hacia la carpeta Publish/Output para asegurar que los recursos XAML se resuelvan al ejecutar el exe publicado -->
+	<Target Name="CopyPriToPublish" AfterTargets="Publish">
+		<PropertyGroup>
+			<!-- Si PublishDir no está establecido (caso Build), usar OutputPath como destino -->
+			<PublishOutputDir Condition="'$(PublishDir)' != ''">$(PublishDir)</PublishOutputDir>
+			<PublishOutputDir Condition="'$(PublishOutputDir)' == ''">$(OutputPath)</PublishOutputDir>
+		</PropertyGroup>
+		<ItemGroup>
+			<_PriFilesToPublish Include="$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\*.pri" />
+		</ItemGroup>
+		<Message Importance="High" Text="Copying PRI files to $(PublishOutputDir) (found @( _PriFilesToPublish->Count()) .pri files)" />
+		<Copy SourceFiles="@(_PriFilesToPublish)" DestinationFiles="@(_PriFilesToPublish->'$(PublishOutputDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition="@(_PriFilesToPublish) != ''" />
+		<!-- Además renombrar nombreproyecto.pri a resources.pri requerido por WinUI -->
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\UTPCalendar.pri" DestinationFiles="$(PublishOutputDir)resources.pri" SkipUnchangedFiles="true" Condition="Exists('$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\UTPCalendar.pri')" />
+	</Target>
+</Project>
