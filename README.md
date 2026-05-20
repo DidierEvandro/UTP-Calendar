@@ -21,15 +21,15 @@ Además, tienes la posibilidad de agregar múltiples calendarios de otros alumno
 
 ## Índice
 
-- [Descripción](#-descripción)
-- [Requisitos previos](#-requisitos-previos)
-- [Recorrido](#-recorrido)
-- [Instalación](#-instalación)
-- [¿Cómo usar?](#-cómo-usar)
-- [Estructura del proyecto](#-estructura-del-proyecto)
-- [¿Cómo lo puedo compilar en mi equipo?](#-cómo-lo-puedo-compilar-en-mi-equipo)
-- [Contribuciones](#-contribuciones)
-- [Licencia](#-licencia)
+- [Descripción](#descripción)
+- [Requisitos previos](#requisitos-previos)
+- [Recorrido](#recorrido)
+- [Instalación](#instalación)
+- [¿Cómo usar?](#cómo-usar)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [¿Cómo lo puedo compilar en mi equipo?](#cómo-lo-puedo-compilar-en-mi-equipo)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
 
 ---
 
