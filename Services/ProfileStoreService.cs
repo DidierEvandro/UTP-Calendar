@@ -94,7 +94,25 @@ namespace UTPCalendar.Services
                 var localAppDataDir = Path.GetDirectoryName(_localAppDataProfilePath);
                 if (!string.IsNullOrWhiteSpace(localAppDataDir)) Directory.CreateDirectory(localAppDataDir);
 
-                await File.WriteAllTextAsync(_localAppDataProfilePath, json);
+                // Reintentar en caso de bloqueo por otro proceso o tarea (estrategia de Retry)
+                int retries = 3;
+                while (retries > 0)
+                {
+                    try
+                    {
+                        using (var stream = new FileStream(_localAppDataProfilePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                        using (var writer = new StreamWriter(stream))
+                        {
+                            await writer.WriteAsync(json);
+                        }
+                        break; // Exito
+                    }
+                    catch (IOException) when (retries > 1)
+                    {
+                        retries--;
+                        await Task.Delay(100);
+                    }
+                }
 
                 // IMPORTANTE: Hemos eliminado el bloque que guardaba en _profilePath.
                 // Guardar en la carpeta del proyecto es lo que causaba el riesgo de GitHub

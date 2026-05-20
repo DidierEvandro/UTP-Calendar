@@ -53,12 +53,23 @@ def build_calendar(events: list[ClassEvent], window_start: date, window_end: dat
     cal.add("prodid", "-//UTP Calendar Scraper//ES")
     cal.add("version", "2.0")
     cal.add("x-wr-calname", "Horario UTP")
-    
+
     try:
         national_holidays = get_national_holidays_from(window_start)
     except Exception:
         national_holidays = {}
 
+    # 1. Leer configuración de recordatorios desde local_profiles.json
+    settings = _get_settings()
+    reminders_enabled = settings.get("reminders_enabled", False)
+    try:
+        first_min = int(settings.get("first_event_reminder_minutes", 120))
+        other_min = int(settings.get("other_events_reminder_minutes", 5))
+    except (ValueError, TypeError):
+        first_min, other_min = 120, 5
+
+    # 2. Preprocesar y filtrar los eventos válidos
+    valid_events = []
     for item in events:
         class_day = item.class_date or _next_weekday(window_start, item.weekday())
         if class_day < window_start or class_day > window_end or class_day in national_holidays:
@@ -68,11 +79,36 @@ def build_calendar(events: list[ClassEvent], window_start: date, window_end: dat
         end_dt = datetime.combine(class_day, _parse_hhmm(item.end_time), TZ)
         if end_dt <= start_dt: end_dt += timedelta(days=1)
 
+        valid_events.append((class_day, start_dt, end_dt, item))
+
+    # 3. Ordenar cronológicamente (Vital para identificar la primera clase del día)
+    valid_events.sort(key=lambda x: (x[0], x[1]))
+
+    # 4. Construir los bloques VEVENT y VALARM
+    processed_dates = set()
+
+    for class_day, start_dt, end_dt, item in valid_events:
         event = Event()
         event.add("summary", item.course)
         event.add("location", item.room)
         event.add("dtstart", start_dt)
         event.add("dtend", end_dt)
+
+        # --- INYECCIÓN DE ALARMA ---
+        if reminders_enabled:
+            alarm = Alarm()
+            alarm.add("action", "DISPLAY")
+            alarm.add("description", f"Recordatorio: {item.course}")
+
+            if class_day not in processed_dates:
+                alarm.add("trigger", timedelta(minutes=-first_min))
+                processed_dates.add(class_day)
+            else:
+                alarm.add("trigger", timedelta(minutes=-other_min))
+
+            event.add_component(alarm)
+        # ---------------------------
+
         cal.add_component(event)
 
     return cal

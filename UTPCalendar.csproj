@@ -99,6 +99,9 @@
 		<DefaultLanguage>es-pe</DefaultLanguage>
 		<ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
 		<StartupObject>UTPCalendar.Program</StartupObject>
+		<Version>1.0.1.0</Version>
+		<AssemblyVersion>1.0.1.0</AssemblyVersion>
+		<FileVersion>1.0.1.0</FileVersion>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Content Remove="Assets\LargeTile.scale-100.png" />
@@ -230,7 +233,7 @@
 		<ItemGroup>
 			<_PriFilesToPublish Include="$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\*.pri" />
 		</ItemGroup>
-		<Message Importance="High" Text="Copying PRI files to $(PublishOutputDir) (found @( _PriFilesToPublish->Count()) .pri files)" />
+		<Message Importance="High" Text="Copying PRI files to $(PublishOutputDir) (found @( _PriFilesToPublish-&gt;Count()) .pri files)" />
 		<Copy SourceFiles="@(_PriFilesToPublish)" DestinationFiles="@(_PriFilesToPublish->'$(PublishOutputDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition="@(_PriFilesToPublish) != ''" />
 		<!-- Además renombrar nombreproyecto.pri a resources.pri requerido por WinUI -->
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\UTPCalendar.pri" DestinationFiles="$(PublishOutputDir)resources.pri" SkipUnchangedFiles="true" Condition="Exists('$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\UTPCalendar.pri')" />
